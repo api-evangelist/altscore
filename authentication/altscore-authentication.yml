@@ -1,0 +1,69 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://github.com/AltScore/altscore-python (src/altscore/__init__.py) and the
+  live OIDC discovery document at
+  https://auth.altscore.ai/.well-known/openid-configuration
+description: >-
+  AltScore authenticates through a Frontegg-backed OAuth 2.0 / OpenID Connect
+  identity service at auth.altscore.ai. The SDK and CLI accept several credential
+  types; the primary machine-to-machine path is client_id + client_secret
+  exchanged for an access token (with refresh) at the identity token endpoint.
+  Requests are multi-tenant — a tenant is resolved from the token. A dedicated
+  sandbox identity host (auth.sandbox.altscore.ai) mirrors production.
+summary:
+  types: [oauth2, apiKey, http]
+  oauth2_flows: [clientCredentials, authorizationCode, refreshToken, deviceCode, tokenExchange]
+  api_key_in: [header]
+identity_service:
+  provider: Frontegg
+  issuer: https://auth.altscore.ai
+  authorization_endpoint: https://auth.altscore.ai/oauth/authorize
+  token_endpoint: https://auth.altscore.ai/oauth/token
+  jwks: see well-known/altscore-openid-configuration.json
+  sandbox_issuer: https://auth.sandbox.altscore.ai
+schemes:
+- name: client_credentials
+  type: oauth2
+  flow: clientCredentials
+  description: >-
+    Machine-to-machine. POST client_id + client_secret to
+    /identity/resources/auth/v1/api-token; returns accessToken + refreshToken.
+    Env vars ALTSCORE_CLIENT_ID / ALTSCORE_CLIENT_SECRET. This is the default SDK
+    and CLI credential.
+  token_endpoint: https://auth.altscore.ai/identity/resources/auth/v1/api-token
+  refresh_endpoint: https://auth.altscore.ai/identity/resources/auth/v2/api-token/token/refresh
+  sources: [https://github.com/AltScore/altscore-python]
+- name: user_credentials
+  type: oauth2
+  flow: password
+  description: >-
+    Email + password login at /identity/resources/auth/v1/user; returns an
+    accessToken (user token). Env vars ALTSCORE_EMAIL / ALTSCORE_PASSWORD.
+  token_endpoint: https://auth.altscore.ai/identity/resources/auth/v1/user
+  sources: [https://github.com/AltScore/altscore-python]
+- name: api_key
+  type: apiKey
+  in: header
+  description: >-
+    Static API key accepted by the SDK/CLI (api_key parameter). Used in place of
+    an interactive login for programmatic access.
+  sources: [https://github.com/AltScore/altscore-python]
+- name: user_token
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: >-
+    Bearer access token (JWT) issued by the identity service; carries the tenant
+    claim. Auto-refreshed by the SDK/CLI on 401.
+  sources: [https://github.com/AltScore/altscore-python]
+- name: form_token
+  type: apiKey
+  in: header
+  description: >-
+    Scoped token used for borrower self-service sign-up flows
+    (borrower_sign_up_with_form).
+  sources: [https://github.com/AltScore/altscore-python]
+notes: >-
+  Tokens auto-refresh on 401 (no manual refresh needed). The CLI can export the
+  active credentials as env vars for the Python SDK via `altscore env`.
