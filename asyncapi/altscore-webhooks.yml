@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/AltScore/altscore-python (src/altscore/__init__.py — _webhooks_base_url)
+spec_type: Webhooks
+description: >-
+  AltScore exposes an outbound webhooks surface served from the CMS host
+  (api.altscore.ai / api.sandbox.altscore.ai / api.stg.altscore.ai). The SDK
+  resolves a dedicated webhooks base URL per environment, and Borrower Central
+  models automations/actionables that drive event-based side effects. No public
+  AsyncAPI document or full event catalog is published, so only the webhook
+  surface is asserted here (never a fabricated event list).
+webhooks:
+  base_url:
+    production: https://api.altscore.ai
+    sandbox: https://api.sandbox.altscore.ai
+    staging: https://api.stg.altscore.ai
+  transport: HTTPS POST callbacks
+  related_entities:
+  - automations
+  - actionables
+  - policy_alerts
+  evidence:
+  - source: https://github.com/AltScore/altscore-python
+    detail: _webhooks_base_url() resolves per environment in the SDK.
+notes: >-
+  No published AsyncAPI spec located; asyncapi scoring family is N/A. Webhook
+  event schemas are documented behind auth in the Postman-hosted docs.

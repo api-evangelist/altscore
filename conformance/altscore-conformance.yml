@@ -1,0 +1,46 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://auth.altscore.ai/.well-known/openid-configuration,
+  https://auth.altscore.ai/.well-known/oauth-authorization-server,
+  https://www.altscore.ai/en/security, https://github.com/AltScore/altscore-python
+description: >-
+  Industry / cross-cutting standards AltScore conforms to, from the live OIDC
+  discovery documents, the security page, and the SDK. AltScore's identity layer
+  is a Frontegg-backed OAuth 2.0 / OpenID Connect provider; compliance is
+  attested (ISO 27001:2022, SOC 2).
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Identity service advertises OAuth 2.0 with client_credentials,
+    authorization_code, refresh_token, token-exchange, and device_code grants
+    (auth.altscore.ai/.well-known/oauth-authorization-server).
+- id: oidc
+  conforms: true
+  evidence: >-
+    Live OpenID Connect discovery at
+    auth.altscore.ai/.well-known/openid-configuration (issuer, authorization,
+    token, jwks; scopes openid/profile/email).
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with server metadata.
+- id: rfc8693-token-exchange
+  conforms: true
+  evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:token-exchange.
+- id: rfc8628-device-authorization
+  conforms: true
+  evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:device_code.
+- id: iso-27001
+  conforms: true
+  evidence: ISO 27001:2022 certification (altscore.ai/en/security, trust.altscore.ai).
+- id: soc2
+  conforms: true
+  evidence: SOC 2 with 52 controls, continuous monitoring via Sprinto (altscore.ai/en/security).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No documented application/problem+json error envelope.
+- id: fhir-r4
+  conforms: false
+- id: fapi
+  conforms: false

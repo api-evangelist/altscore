@@ -1,0 +1,32 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://docs.altscore.ai/, https://github.com/AltScore/altscore-cli,
+  https://github.com/AltScore/altscore-python
+description: >-
+  AltScore's API lifecycle posture, captured from the SDK, CLI, and docs. The
+  API exposes coexisting v1 and v2 resource surfaces (e.g. workflows vs
+  workflows-v2, tasks vs tasks-v2), with v2 being the current declarative model.
+  AltScore does not publish a dated public changelog, a formal deprecation
+  policy, or an operational status page; those are recorded as not-found rather
+  than asserted.
+versioning:
+  scheme: uri-path
+  surfaces: [v1, v2]
+  current: v2
+  detail: >-
+    v2 resources (workflows-v2, tasks-v2) are the current surface and use a
+    declarative `apply` create-or-update verb; v1 surfaces remain available.
+  docs: https://docs.altscore.ai/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No public deprecation/sunset policy located.
+status_page:
+  url: null
+  notes: >-
+    No claimed status page. altscore.statuspage.io resolves to the default
+    unconfigured Atlassian Statuspage placeholder, so no status page is asserted.
+sla:
+  url: null
+deprecated_operations: []

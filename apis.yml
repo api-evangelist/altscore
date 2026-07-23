@@ -1,7 +1,16 @@
 aid: altscore
 name: AltScore
-description: AltScore is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  AltScore is a B2B credit infrastructure platform for Latin America — the "Rails
+  of Lending" that lets any company build, embed, and deploy credit products in
+  weeks instead of years. Its API surface spans three products: AltData, an
+  aggregation layer over 50+ alternative and traditional data sources for
+  underwriting and scoring; Borrower Central, an onboarding, KYC/KYB, identity,
+  document, and workflow/decisioning engine; and a Credit Management System for
+  the full loan lifecycle — disbursements, credit accounts, debts, payment
+  orders, and DPAs. Access is through first-party Python and TypeScript SDKs, a
+  Go CLI, and a Frontegg-backed OAuth/OIDC identity layer, with a dedicated
+  sandbox environment and an in-production test mode (isTest) for UAT.
 url: https://raw.githubusercontent.com/api-evangelist/altscore/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +18,132 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
+image: https://altscore.ai/favicon.ico
 tags:
 - Company
-apis: []
+- Credit
+- Lending
+- Fintech
+- Credit Scoring
+- Underwriting
+- KYC
+- Financial Services
+- Latin America
+- Data Aggregation
+- Workflows
+- Decisioning
+apis:
+- name: AltData API
+  description: >-
+    Alternative-data aggregation for credit underwriting and scoring. Aggregates
+    over 50 data sources into on-demand data requests that feed borrower
+    enrichment and decisioning.
+  humanURL: https://docs.altscore.ai/
+  baseURL: https://data.altscore.ai
+  properties:
+  - type: Documentation
+    url: https://docs.altscore.ai/
+- name: Borrower Central API
+  description: >-
+    Onboarding, KYC/KYB, identities, documents, deals, forms, workflows (v1 + v2),
+    credit decisioning, evaluators, and policy rules. The default module of the
+    AltScore SDK and CLI.
+  humanURL: https://docs.altscore.ai/
+  baseURL: https://bc.altscore.ai
+  properties:
+  - type: Documentation
+    url: https://docs.altscore.ai/
+- name: Credit Management System API
+  description: >-
+    The loan lifecycle system — partners, clients, credit accounts, debts,
+    disbursements, disbursement accounts, payment accounts, payment orders, and
+    DPAs (payment agreements). Includes the webhooks surface.
+  humanURL: https://docs.altscore.ai/
+  baseURL: https://api.altscore.ai
+  properties:
+  - type: Documentation
+    url: https://docs.altscore.ai/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/altscore-trust-center.yml
 - type: Website
   url: https://altscore.ai/
+- type: DeveloperPortal
+  url: https://docs.altscore.ai/
+- type: Documentation
+  url: https://docs.altscore.ai/
+- type: APIReference
+  url: https://docs.altscore.ai/
+- type: Blog
+  url: https://www.altscore.ai/en/blog
+- type: GitHubOrganization
+  url: https://github.com/AltScore
+- type: TermsOfService
+  url: https://www.altscore.ai/en/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.altscore.ai/en/privacy-policy
+- type: Support
+  url: https://www.altscore.ai/en/#contacto
+- type: Compliance
+  url: https://www.altscore.ai/en/security
+- type: Postman
+  url: https://docs.altscore.ai/
+- type: Packages
+  url: packages/altscore-packages.yml
+- type: SDKs
+  url: packages/altscore-packages.yml
+- type: CLI
+  url: cli/altscore-cli.yml
+- type: Authentication
+  url: authentication/altscore-authentication.yml
+- type: OAuthScopes
+  url: scopes/altscore-scopes.yml
+- type: OpenIDConnect
+  url: well-known/altscore-openid-configuration.json
+- type: WellKnown
+  url: well-known/altscore-well-known.yml
+- type: MCPServer
+  url: mcp/altscore-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/altscore-llms.txt
+- type: Conventions
+  url: conventions/altscore-conventions.yml
+- type: Conformance
+  url: conformance/altscore-conformance.yml
+- type: Lifecycle
+  url: lifecycle/altscore-lifecycle.yml
+- type: Sandbox
+  url: sandbox/altscore-sandbox.yml
+- type: DataModel
+  url: data-model/altscore-data-model.yml
+- type: Webhooks
+  url: asyncapi/altscore-webhooks.yml
+- type: DomainSecurity
+  url: security/altscore-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

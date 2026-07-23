@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/AltScore/altscore-cli/blob/main/.claude/skills/altscore-api/SKILL.md
+description: >-
+  Agent Skills for AltScore. The primary skill is provider-published: AltScore
+  ships a Claude Code agent skill in its CLI repo that gives agents full access
+  to the Borrower Central API through the `altscore` CLI. Saved verbatim.
+skills:
+- file: altscore-api.md
+  name: altscore-api
+  description: >-
+    Interact with the AltScore Borrower Central API using the altscore CLI —
+    create/read/update/delete borrowers, identities, documents, deals; query
+    executions and packages; raw API calls; profile management.
+  source: provider-published
+  api: cli/altscore-cli.yml
+  operations:
+  - borrowers.list
+  - borrowers.get
+  - borrowers.create
+  - identities.create
+  - documents.create
+  - deals.list
+  - executions.state
+  - workflows-v2.apply
+  - schema
+  - api

@@ -1,0 +1,34 @@
+# AltScore
+
+> B2B credit infrastructure for Latin America — the "Rails of Lending" that lets any company build, embed, and deploy credit products in weeks. Three API modules: AltData (aggregation over 50+ data sources for underwriting/scoring), Borrower Central (onboarding, KYC/KYB, identities, documents, deals, workflows, decisioning), and a Credit Management System (loan lifecycle: credit accounts, debts, disbursements, payment orders, DPAs). Frontegg-backed OAuth/OIDC identity, first-party Python & TypeScript SDKs, a Go CLI, and a dedicated sandbox environment.
+
+## APIs
+- [AltData API](https://data.altscore.ai): Alternative-data aggregation for credit underwriting and scoring.
+- [Borrower Central API](https://bc.altscore.ai): Onboarding, KYC/KYB, identities, documents, deals, workflows (v1/v2), decisioning.
+- [Credit Management System API](https://api.altscore.ai): Partners, clients, credit accounts, debts, disbursements, payment orders, DPAs, webhooks.
+
+## Docs
+- [Developer Portal / Docs](https://docs.altscore.ai/): Postman-hosted API documentation.
+- [Company site](https://www.altscore.ai/en/): Product overview (AltData, Rieles, AltCard, Confia).
+- [Security](https://www.altscore.ai/en/security): ISO 27001:2022, SOC 2 (52 controls via Sprinto), AES-256.
+- [Trust Center](https://trust.altscore.ai/): Certifications and controls.
+- [Blog](https://www.altscore.ai/en/blog): Lending-as-a-Service and LatAm credit topics.
+
+## SDKs & Tools
+- [Python SDK](https://pypi.org/project/altscore/): `pip install altscore` (github.com/AltScore/altscore-python).
+- [TypeScript SDK](https://github.com/AltScore/altscore-typescript): First-party TS client.
+- [CLI](https://github.com/AltScore/altscore-cli): Go CLI `altscore` with a published Claude Code agent skill.
+- [GitHub org](https://github.com/AltScore): Source for SDKs, CLI, and helpers.
+
+## Authentication
+- [OIDC discovery](https://auth.altscore.ai/.well-known/openid-configuration): OAuth 2.0 / OpenID Connect via Frontegg; client_credentials, authorization_code, refresh_token, token-exchange, device_code grants.
+
+## Repo artifacts
+- [Authentication profile](authentication/altscore-authentication.yml)
+- [Conventions](conventions/altscore-conventions.yml)
+- [Sandbox / test mode](sandbox/altscore-sandbox.yml)
+- [CLI command surface](cli/altscore-cli.yml)
+- [Data model](data-model/altscore-data-model.yml)
+- [Packages / SDKs](packages/altscore-packages.yml)
+- [Trust center](security/altscore-trust-center.yml)
+- [Agent skill (provider-published)](skills/altscore-api.md)

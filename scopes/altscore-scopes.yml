@@ -1,0 +1,35 @@
+generated: '2026-07-17'
+method: searched
+source: https://auth.altscore.ai/.well-known/openid-configuration
+docs: https://auth.altscore.ai/.well-known/openid-configuration
+description: >-
+  OAuth 2.0 / OpenID Connect scopes and grant types advertised by AltScore's
+  Frontegg-backed identity service. These are the identity-layer scopes exposed
+  through OIDC discovery; product/API authorization is enforced per-tenant on
+  the resource servers rather than through fine-grained OAuth scopes.
+schemes:
+- name: OpenIDConnect
+  source: https://auth.altscore.ai/.well-known/openid-configuration
+  issuer: https://auth.altscore.ai
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://auth.altscore.ai/oauth/token
+  - flow: authorizationCode
+    authorizationUrl: https://auth.altscore.ai/oauth/authorize
+    tokenUrl: https://auth.altscore.ai/oauth/token
+grant_types_supported:
+- authorization_code
+- refresh_token
+- client_credentials
+- urn:ietf:params:oauth:grant-type:token-exchange
+- urn:ietf:params:oauth:grant-type:device_code
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; issue an ID token.
+  flows: [authorizationCode]
+- scope: profile
+  description: Access to the user's basic profile claims.
+  flows: [authorizationCode]
+- scope: email
+  description: Access to the user's email claim.
+  flows: [authorizationCode]

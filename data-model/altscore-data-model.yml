@@ -1,0 +1,107 @@
+generated: '2026-07-17'
+method: derived
+source: >-
+  https://github.com/AltScore/altscore-python — entity list derived from the SDK
+  resource modules (src/altscore/borrower_central/model, .../cms/model,
+  .../altdata/model). No public OpenAPI is available, so relationships are
+  inferred from SDK module structure and the CLI resource grammar, not from
+  $ref links.
+description: >-
+  Entity-relationship map of the AltScore platform across its three modules:
+  Borrower Central (onboarding / KYC / workflows / decisioning), the Credit
+  Management System (loan lifecycle), and AltData (data aggregation).
+modules:
+  borrower_central:
+    base_url: https://bc.altscore.ai
+    entities:
+    - borrower
+    - identity
+    - document
+    - deal
+    - deal_step
+    - deal_contact
+    - point_of_contact
+    - address
+    - asset
+    - authorization
+    - form
+    - form_template
+    - workflow
+    - execution
+    - execution_batch
+    - evaluator
+    - decision
+    - policy_rule
+    - policy_policy
+    - policy_alert
+    - risk_rating
+    - repayment_risk_rating
+    - data_model
+    - store_package
+    - store_source
+    - metric
+    - kpi
+  cms:
+    base_url: https://api.altscore.ai
+    entities:
+    - partner
+    - client
+    - credit_account
+    - debt
+    - disbursement
+    - disbursement_account
+    - payment_account
+    - payment_order
+    - dpa
+    - dpa_product
+    - calendar
+  altdata:
+    base_url: https://data.altscore.ai
+    entities:
+    - data_request
+    - batch
+    - source
+entities:
+- name: borrower
+  module: borrower_central
+  relationships:
+  - {kind: has_many, target: identity, via: borrowerId}
+  - {kind: has_many, target: document, via: borrowerId}
+  - {kind: has_many, target: deal, via: borrowerId}
+  - {kind: has_many, target: asset}
+  - {kind: has_many, target: point_of_contact}
+  - {kind: has_many, target: authorization}
+- name: deal
+  module: borrower_central
+  relationships:
+  - {kind: belongs_to, target: borrower, via: borrowerId}
+  - {kind: has_many, target: deal_step}
+  - {kind: has_many, target: deal_contact}
+- name: execution
+  module: borrower_central
+  relationships:
+  - {kind: belongs_to, target: workflow}
+  - {kind: has_many, target: execution_batch}
+- name: credit_account
+  module: cms
+  relationships:
+  - {kind: belongs_to, target: client}
+  - {kind: belongs_to, target: partner}
+  - {kind: has_many, target: debt}
+  - {kind: has_many, target: disbursement}
+  - {kind: has_many, target: payment_order}
+- name: disbursement
+  module: cms
+  relationships:
+  - {kind: belongs_to, target: credit_account}
+  - {kind: belongs_to, target: disbursement_account}
+- name: payment_order
+  module: cms
+  relationships:
+  - {kind: belongs_to, target: credit_account}
+  - {kind: belongs_to, target: payment_account}
+- name: data_request
+  module: altdata
+  relationships:
+  - {kind: belongs_to, target: source}
+  - {kind: has_many, target: batch}

@@ -1,0 +1,72 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/AltScore/altscore-cli
+description: >-
+  AltScore ships a first-party Go CLI (`altscore`) that wraps the AltScore API.
+  Every resource follows a uniform grammar and is self-documenting; all commands
+  output JSON to stdout. The repo also publishes a Claude Code agent skill
+  (.claude/skills/altscore-api/SKILL.md) — see skills/altscore-api.md.
+binary: altscore
+language: go
+repository: https://github.com/AltScore/altscore-cli
+package: packages/altscore-packages.yml
+install:
+  github_release: >-
+    gh release download --repo AltScore/altscore-cli --pattern
+    "altscore-$(uname -s)-$(uname -m)" --output /usr/local/bin/altscore --clobber
+  from_source: go build -buildvcs=false -o altscore .   # requires Go 1.25+
+  update: altscore update   # verifies SHA-256, swaps binary in place
+config_file: ~/.config/altscore/config.toml
+auth:
+  login: altscore login   # walks through profile, environment, credentials, tenant
+  env_export: altscore env > .env   # prints ALTSCORE_CLIENT_ID/SECRET/USER_TOKEN/ENVIRONMENT/TENANT
+  token_refresh: automatic on 401
+command_model:
+  grammar: altscore <resource> <action> [<id>] [--flags]
+  help: altscore <resource> <action> --help
+  body_input: "--body '{...}' | --body @file.json | stdin pipe"
+  filters: --filter key=value (repeatable)
+  pagination: --per-page N --page N
+  profiles: --profile <name>
+  raw_escape_hatch: "altscore api GET|POST /v1/path --module borrower_central|cms|altdata"
+  schema_introspection: altscore schema <resource> [--action create|update]
+resources:
+- borrowers
+- identities
+- documents
+- deals
+- executions
+- execution-batches
+- profiles
+- schemas
+- altdata
+- data-models
+- decisions
+- credit-decisioning
+- evaluators
+- task-tests
+- tasks-v2
+- workflow-tasks
+- workflows
+- workflows-v2
+- credit-accounts
+- payment-orders
+- dpas
+- external-source-configs
+- analytics
+- tools
+- api
+key_flows:
+- name: List and read borrowers
+  commands:
+  - altscore borrowers list --per-page 5
+  - altscore borrowers get <id>
+- name: Create a borrower
+  commands:
+  - 'altscore borrowers create --body ''{"persona": "individual", "label": "Jane Doe"}'''
+- name: Apply a v2 workflow (declarative create-or-update)
+  commands:
+  - altscore workflows-v2 apply --body @spec.json
+- name: Raw API call
+  commands:
+  - altscore api GET /v1/borrowers/<id>/summary

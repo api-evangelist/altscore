@@ -1,0 +1,69 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://github.com/AltScore/altscore-python (src/altscore/__init__.py) and
+  https://github.com/AltScore/altscore-cli (.claude/skills/altscore-api/SKILL.md)
+description: >-
+  AltScore's test surface. There are two complementary mechanisms: (1) a fully
+  separate sandbox environment (distinct auth/API/borrower-central hosts) that
+  the SDK and CLI select via an environment name; and (2) an in-production test
+  mode (isTest) that lets UAT records coexist with live data. No public test
+  card / magic-value list is published. Never invent test values.
+environments:
+- name: production
+  hosts:
+    identity: https://auth.altscore.ai
+    borrower_central: https://bc.altscore.ai
+    altdata: https://data.altscore.ai
+    cms: https://api.altscore.ai
+- name: sandbox
+  hosts:
+    identity: https://auth.sandbox.altscore.ai
+    borrower_central: https://bc.sandbox.altscore.ai
+    cms: https://api.sandbox.altscore.ai
+- name: staging
+  hosts:
+    identity: https://altscore-stg.us.frontegg.com
+    cms: https://api.stg.altscore.ai
+- name: local
+  note: URLs supplied via ALTSCORE_LOCAL_* env vars.
+selection:
+  sdk: AltScore(environment="sandbox")
+  cli: profile/environment chosen during `altscore login`
+test_mode:
+  field: isTest
+  detail: >-
+    Most entities support isTest so UAT data can live in production. Test records
+    are excluded from list results by default.
+  cli_flags:
+    include_tests: --include-tests
+    only_tests: --test-only
+    create_as_test: --is-test
+    mark: altscore <resource> set-test <id> --enable   # cascades to children
+    unmark: altscore <resource> set-test <id> --disable
+  full_test_mode_entities:
+  - borrowers
+  - identities
+  - documents
+  - deals
+  - assets
+  - borrower-fields
+  - deal-fields
+  - asset-fields
+  - points-of-contact
+  - deal-contacts
+  - authorizations
+  - metrics
+  - artifacts
+  - data-models
+  - evaluators
+  - evaluation-rules
+  - policy-rules
+  - rule-trees
+  filter_only_entities:
+  - executions
+  - execution-batches
+notes: >-
+  DRAFT v2 workflows execute their full graph (node execution is not gated by
+  status), so running a DRAFT by id is a real pre-publish test; publishing only
+  changes which version the alias serves.

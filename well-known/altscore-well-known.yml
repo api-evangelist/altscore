@@ -1,0 +1,38 @@
+generated: '2026-07-17'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the AltScore hosts
+  in apis.yml (baseURLs) and the identity host. The auth host
+  (auth.altscore.ai, a Frontegg-backed OAuth/OIDC identity server) serves live
+  OpenID Connect and OAuth Authorization Server discovery documents, saved
+  verbatim. The API/data hosts expose no /.well-known/ documents. Status is the
+  HTTP code observed at fetch time.
+hosts:
+- host: https://auth.altscore.ai
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: altscore-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: altscore-oauth-authorization-server.json
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://api.altscore.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+- host: https://data.altscore.ai
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+- host: https://altscore.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

@@ -1,0 +1,45 @@
+generated: '2026-07-17'
+method: searched
+source: https://github.com/AltScore
+description: >-
+  First-party AltScore client libraries and tools. Verified against PyPI and the
+  AltScore GitHub organization. The Python SDK is published to PyPI as `altscore`;
+  the TypeScript SDK and Go CLI are distributed from the AltScore GitHub org
+  (the CLI via GitHub Releases, not a public package registry). Registry status
+  recorded at fetch time.
+packages:
+- language: python
+  registry: pypi
+  name: altscore
+  url: https://pypi.org/project/altscore/
+  source: https://github.com/AltScore/altscore-python
+  install: pip install altscore
+  official: true
+  note: >-
+    Python SDK for the AltScore API (Borrower Central, AltData, CMS, Comms,
+    Macros). Latest 0.1.268 (Apr 2026). MIT. Maintainer developers@altscore.ai.
+- language: typescript
+  registry: github
+  name: altscore-typescript
+  url: https://github.com/AltScore/altscore-typescript
+  source: https://github.com/AltScore/altscore-typescript
+  install: (from GitHub — no public npm package found)
+  official: true
+- language: go
+  registry: github
+  name: altscore-cli
+  url: https://github.com/AltScore/altscore-cli
+  source: https://github.com/AltScore/altscore-cli
+  install: >-
+    gh release download --repo AltScore/altscore-cli --pattern
+    "altscore-$(uname -s)-$(uname -m)"
+  official: true
+  note: Go CLI binary distributed via GitHub Releases. See cli/altscore-cli.yml.
+- language: python
+  registry: github
+  name: rfc-calculator-python
+  url: https://github.com/AltScore/rfc-calculator-python
+  source: https://github.com/AltScore/rfc-calculator-python
+  install: (from GitHub)
+  official: true
+  note: Helper SDK for calculating Mexico's RFC (tax ID).

@@ -1,0 +1,65 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://github.com/AltScore/altscore-cli (.claude/skills/altscore-api/SKILL.md,
+  README) and https://github.com/AltScore/altscore-python (src/altscore)
+description: >-
+  Cross-cutting request/response conventions that apply across every AltScore
+  API module (Borrower Central, AltData, CMS). Captured from the AltScore CLI's
+  published agent skill and the Python SDK. AltScore does not publicly document
+  an idempotency-key contract, so none is asserted here.
+base_urls:
+  borrower_central: https://bc.altscore.ai
+  altdata: https://data.altscore.ai
+  cms: https://api.altscore.ai
+  identity: https://auth.altscore.ai
+api_style: REST over HTTPS, JSON request bodies, JSON responses
+module_routing:
+  detail: >-
+    The API is split into modules; the default is borrower_central. The CLI/SDK
+    route to cms or altdata via a module selector (e.g. `altscore api GET /path
+    --module cms`).
+authentication:
+  scheme: OAuth2 (Frontegg) client_credentials / user token / api key
+  detail: authentication/altscore-authentication.yml
+multi_tenancy:
+  supported: true
+  detail: >-
+    Every request is tenant-scoped; the tenant is resolved from the access token
+    (get_tenant_from_token). A partner_id is auto-detected from
+    cms.partners.me() when omitted.
+pagination:
+  style: page-number
+  request_params:
+    per_page: page size (e.g. --per-page 5)
+    page: 1-based page number
+  detail: Standard page/per-page pagination on list endpoints.
+filtering:
+  mechanism: repeatable key=value filters (--filter key=value); valid keys vary per resource
+test_mode:
+  supported: true
+  field: isTest
+  detail: >-
+    Most entities support an isTest flag so UAT data can live in production. Test
+    records are excluded from list results by default; opt in with include-tests
+    / test-only. set-test cascades to child entities. See sandbox/altscore-sandbox.yml.
+schema_introspection:
+  supported: true
+  detail: >-
+    A schema registry returns exact field names, types, required/optional, and
+    aliases per resource and action (create/update/response/filters). CLI:
+    `altscore schema <resource> --action create`.
+field_casing:
+  v2: camelCase (e.g. nodeId, sourceNodeId)
+versioning:
+  scheme: uri-path (v1 and v2 resource surfaces coexist; e.g. workflows vs workflows-v2)
+  detail: lifecycle/altscore-lifecycle.yml
+error_handling:
+  detail: >-
+    HTTP status codes drive errors (raise_for_status_improved in the SDK); tokens
+    auto-refresh on 401. Some write paths accept a request and fail later
+    (documented "silent-failure traps" in the CLI agent skill) rather than
+    returning a synchronous error.
+idempotency:
+  supported: false
+  detail: No public idempotency-key contract is documented by AltScore.

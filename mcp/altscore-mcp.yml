@@ -1,0 +1,60 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: >-
+  Derived from the AltScore CLI resource surface
+  (https://github.com/AltScore/altscore-cli). AltScore does not operate a hosted
+  MCP server; instead it ships a Claude Code agent skill
+  (.claude/skills/altscore-api/SKILL.md, saved verbatim at skills/altscore-api.md)
+  that drives the API through the CLI. This candidate tool list maps the CLI's
+  core resource actions to MCP tools for a potential server.
+description: >-
+  Candidate MCP tool surface for AltScore, one tool per core CLI resource action.
+  Not published — provided as a governance/agent-readiness starting point. The
+  provider's shipped agent access path today is the CLI-backed Claude Code skill.
+server:
+  name: altscore
+  transport: stdio
+  status: candidate
+  note: No hosted/remote MCP server published as of 2026-07-17.
+provider_agent_surface:
+  type: claude-code-skill
+  file: skills/altscore-api.md
+  source: https://github.com/AltScore/altscore-cli/blob/main/.claude/skills/altscore-api/SKILL.md
+tools:
+- name: list_borrowers
+  description: List borrowers.
+  source: altscore borrowers list
+- name: get_borrower
+  description: Get a borrower by id.
+  source: altscore borrowers get <id>
+- name: create_borrower
+  description: Create a borrower.
+  source: altscore borrowers create --body '{...}'
+- name: list_identities
+  description: List borrower identities.
+  source: altscore identities list
+- name: create_document
+  description: Create/attach a document to a borrower.
+  source: altscore documents create --body '{...}'
+- name: list_deals
+  description: List deals.
+  source: altscore deals list
+- name: get_execution_state
+  description: Get an execution's output state.
+  source: altscore executions state <id>
+- name: apply_workflow_v2
+  description: Declaratively create-or-update a v2 workflow.
+  source: altscore workflows-v2 apply --body @spec.json
+- name: list_decisions
+  description: List registered credit decisions.
+  source: altscore decisions list
+- name: request_altdata
+  description: Request data from an AltData source.
+  source: altscore altdata (data request)
+- name: list_credit_accounts
+  description: List CMS credit accounts.
+  source: altscore credit-accounts list --module cms
+- name: raw_api_call
+  description: Escape hatch for any endpoint (GET/POST) against a chosen module.
+  source: altscore api GET|POST /v1/path --module borrower_central|cms|altdata
