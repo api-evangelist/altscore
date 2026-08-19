@@ -1,17 +1,13 @@
 generated: '2026-07-17'
 method: derived
 status: candidate
-source: >-
-  Derived from the AltScore CLI resource surface
-  (https://github.com/AltScore/altscore-cli). AltScore does not operate a hosted
-  MCP server; instead it ships a Claude Code agent skill
-  (.claude/skills/altscore-api/SKILL.md, saved verbatim at skills/altscore-api.md)
-  that drives the API through the CLI. This candidate tool list maps the CLI's
-  core resource actions to MCP tools for a potential server.
-description: >-
-  Candidate MCP tool surface for AltScore, one tool per core CLI resource action.
-  Not published — provided as a governance/agent-readiness starting point. The
-  provider's shipped agent access path today is the CLI-backed Claude Code skill.
+source: Derived from the AltScore CLI resource surface (https://github.com/AltScore/altscore-cli). AltScore
+  does not operate a hosted MCP server; instead it ships a Claude Code agent skill (.claude/skills/altscore-api/SKILL.md,
+  saved verbatim at skills/altscore-api.md) that drives the API through the CLI. This candidate tool list
+  maps the CLI's core resource actions to MCP tools for a potential server.
+description: Candidate MCP tool surface for AltScore, one tool per core CLI resource action. Not published
+  — provided as a governance/agent-readiness starting point. The provider's shipped agent access path
+  today is the CLI-backed Claude Code skill.
 server:
   name: altscore
   transport: stdio
@@ -58,3 +54,9 @@ tools:
 - name: raw_api_call
   description: Escape hatch for any endpoint (GET/POST) against a chosen module.
   source: altscore api GET|POST /v1/path --module borrower_central|cms|altdata
+deployment:
+  mode: none
+  verified: derived
+  tools: 12
+  checked: '2026-08-12'
+  source: catalog MCP census
