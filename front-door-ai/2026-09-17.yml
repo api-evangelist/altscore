@@ -1,0 +1,27 @@
+# Front Door AI Index — altscore — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: altscore
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: altscore.ai
+  final_host: altscore.ai
+  ownership: own
+  owner: altscore
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 3
+  host_score: 3
+  density: 5.2
+  words: 577
+  tiers:
+    agentic: 1
+    core: 2
+    model: 0
+  ambiguous: 2
+  top_terms:
+    AI: 2
+    agent: 2
+    AI agent: 1
