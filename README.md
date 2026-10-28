@@ -64,6 +64,115 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-AltScore is a company surfaced as a portfolio company of techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+AltScore is a B2B credit infrastructure platform for Latin America — the "Rails of Lending" that lets any company build, embed, and deploy credit products in weeks instead of years. Its API surface spans three products: AltData, an aggregation layer over 50+ alternative and traditional data sources for underwriting and scoring; Borrower Central, an onboarding, KYC/KYB, identity, document, and workflow/decisioning engine; and a Credit Management System for the full loan lifecycle — disbursements, credit accounts, debts, payment orders, and DPAs. Access is through first-party Python and TypeScript SDKs, a Go CLI, and a Frontegg-backed OAuth/OIDC identity layer, with a dedicated sandbox environment and an in-production test mode (isTest) for UAT.
 
-Backed by: techstars — https://altscore.ai/
+**Areas:** Company · Credit · Lending · Fintech · Credit Scoring · Underwriting · KYC · Financial Services · Latin America · Data Aggregation · Workflows · Decisioning
+
+## AltScore on APIs.io
+
+Everything profiled for AltScore is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/altscore/](https://apis.io/providers/altscore/)** — or go straight to one of the APIs or properties below.
+
+### APIs (3)
+
+- [AltData API](https://apis.io/apis/altscore/altdata-api/) — Alternative-data aggregation for credit underwriting and scoring. Aggregates over 50 data sources into on-demand data requests that feed borrower enrichment…
+- [Borrower Central API](https://apis.io/apis/altscore/borrower-central-api/) — Onboarding, KYC/KYB, identities, documents, deals, forms, workflows (v1 + v2), credit decisioning, evaluators, and policy rules. The default module of the…
+- [Credit Management System API](https://apis.io/apis/altscore/credit-management-system-api/) — The loan lifecycle system — partners, clients, credit accounts, debts, disbursements, disbursement accounts, payment accounts, payment orders, and DPAs…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Altscore Webhooks](https://apis.io/asyncapis/altscore/altscore-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [altscore](https://apis.io/servers/altscore/altscore/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Altscore Authentication](https://apis.io/security/altscore/altscore-authentication/)
+- [Altscore Domain Security](https://apis.io/security/altscore/altscore-domain-security/)
+- [Altscore Trust Center](https://apis.io/security/altscore/altscore-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Altscore Scopes](https://apis.io/scopes/altscore/altscore-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://altscore.ai/)
+- [Documentation](https://docs.altscore.ai/)
+- [API reference](https://docs.altscore.ai/)
+- [Support](https://www.altscore.ai/en/#contacto)
+- [Blog](https://www.altscore.ai/en/blog)
+- [Compliance](https://www.altscore.ai/en/security)
+- [Terms of service](https://www.altscore.ai/en/terms-of-service)
+- [Privacy policy](https://www.altscore.ai/en/privacy-policy)
+- [GitHub](https://github.com/AltScore)
+
+## API Evangelist rating
+
+**Kin Score 47.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 78.6 |
+| Access clarity | 36.8 |
+
+**Agent readiness 31.7** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 41.2** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/altscore/](https://apis.io/providers/altscore/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for AltScore: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/altscore/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
